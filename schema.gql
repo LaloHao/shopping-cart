@@ -1,0 +1,11 @@
+type Movie  {
+  title: String!
+  released: Int
+  actors: [Person] @relation(name:"ACTED_IN",direction:IN)
+}
+
+type Person {
+  name: String!
+  born: Int
+  movies: [Movie] @relation(name:"ACTED_IN")
+}
