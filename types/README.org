@@ -1,0 +1,109 @@
+#+TITLE: Shopping Cart types
+
+* Definitions
+
+The types defined in =schema.gql=:
+
+#+name: types
+#+begin_src shell :exports both
+perl -ne '/type (\w+) {/ && print "$1\n"' schema.gql
+#+end_src
+
+#+RESULTS: types
+#+begin_src shell
+| DateTime      |
+| Product       |
+| User          |
+| ProductType   |
+| ProductStatus |
+| Tag           |
+| Image         |
+#+end_src
+
+A regex for capturing lines containing a =graphql= definition using the types
+extracted from the previous command.
+
+#+name: types-filter
+#+begin_src elisp :var types=types
+(let ((quoted-types (--map (format "\"%s\"" (car it)) types)))
+  (string-join quoted-types "|"))
+#+end_src
+
+Only the following definitions will show on the graph.
+
+#+RESULTS: types-filter
+#+begin_src shell
+"DateTime"|"Product"|"User"|"ProductType"|"ProductStatus"|"Tag"|"Image"
+#+end_src
+
+Generate the =.dot= file on a first pass, no processing done yet.
+
+#+name: dot-step-0
+#+begin_src shell :exports code :results silent
+node index.js | ./node_modules/.bin/graphqlviz /dev/stdin > schema.dot
+#+end_src
+
+Having generated the =.dot= file, now we can find all the definitions used on
+the graph.
+
+#+name: output-types
+#+begin_src shell :var filter=types-filter _=dot-step-0
+# awk "/$filter/" schema.dot
+perl -ne '/"(\w+)" \[label/ && print "$1\n"' schema.dot
+#+end_src
+
+#+RESULTS: output-types
+#+begin_src shell
+| Query               |
+| Product             |
+| User                |
+| ProductType         |
+| ProductStatus       |
+| Tag                 |
+| Image               |
+| DateTime            |
+| _RelationDirections |
+| DateTimeInput       |
+#+end_src
+
+It's as easy as subtracting the types of the diagram not defined by us.
+
+#+name: filter-output-types
+#+begin_src elisp :var types=types output-types=output-types
+(let* ((remove-these (funcall (-on #'-difference (-partial #'-flatten-n 1)) output-types types))
+      (quoted-types (--map (format "\"%s\"" it) remove-these)))
+  (string-join quoted-types "|"))
+#+end_src
+
+These are the ones that we don't want to draw.
+
+#+RESULTS: filter-output-types
+#+begin_src shell
+"Query"|"_RelationDirections"|"DateTimeInput"
+#+end_src
+
+Mic check to see the what we are going to run to clean the diagram.
+
+#+begin_src shell :var filter=filter-output-types :results verbatim
+echo awk "'!(/$filter/)'"
+#+end_src
+
+#+RESULTS:
+#+begin_src shell
+awk '!(/"Query"|"_RelationDirections"|"DateTimeInput"/)'
+#+end_src
+
+If everything looks good then remove them.
+
+#+name: dot-step-1
+#+begin_src shell :exports code :results silent :var filter=filter-output-types
+awk "!(/$filter/)" schema.dot | dot -Tpng -o schema.png
+#+end_src
+
+The generated diagram for our types are as follow:
+
+[[file:schema.png]]
+
+* Schema
+#+name: schema
+#+INCLUDE: schema.gql src graphql
