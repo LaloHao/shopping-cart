@@ -4,7 +4,7 @@
 
 * Schema
 #+name: schema
-#+begin_src shell :exports result :wrap src graphql :results verbatim
+#+begin_src shell :exports results :wrap src graphql :results verbatim
 cat schema.gql
 #+end_src
 
