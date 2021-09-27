@@ -1,5 +1,102 @@
 #+TITLE: Shopping Cart types
 
+[[file:schema.png]]
+
+* Schema
+#+name: schema
+#+begin_src shell :exports result :wrap src graphql :results verbatim
+cat schema.gql
+#+end_src
+
+#+RESULTS: schema
+#+begin_src graphql
+# Placeholder
+# type DateTime {
+
+type Product {
+  id            : ID!
+  name          : String!
+  description   : String!
+
+  featuredImage : Image          @relation(name: "FEATURES"     , direction: IN)
+  images        : [Image]!       @relation(name: "IMAGES"       , direction: IN)
+
+  type          : ProductType!   @relation(name: "TYPE"         , direction: IN)
+  status        : ProductStatus! @relation(name: "STATUS"       , direction: IN)
+  tags          : [Tag]!         @relation(name: "TAGGED"       , direction: IN)
+  inventory     : Int!
+
+  publishedBy   : User           @relation(name: "PUBLISHED"    , direction: IN)
+  publishedAt   : DateTime
+
+  createdAt     : DateTime
+  updatedAt     : DateTime
+  deletedAt     : DateTime
+}
+
+type User {
+  id            : ID!
+  name          : String!
+
+  products      : [Product]      @relation(name: "PUBLISHED"    , direction: OUT)
+  images        : [Image]!       @relation(name: "UPLOADED"     , direction: OUT)
+
+  createdAt     : DateTime
+  updatedAt     : DateTime
+  deletedAt     : DateTime
+}
+
+type ProductType {
+  id            : ID!
+  name          : String!
+  description   : String!
+
+  products      : [Product]!     @relation(name: "TYPE"         , direction: OUT)
+
+  createdAt     : DateTime!
+  updatedAt     : DateTime!
+  deletedAt     : DateTime
+}
+
+type ProductStatus {
+  id            : ID!
+  name          : String!
+  description   : String!
+
+  products      : [Product]!     @relation(name: "STATUS"       , direction: OUT)
+
+  createdAt     : DateTime!
+  updatedAt     : DateTime!
+  deletedAt     : DateTime
+}
+
+type Tag {
+  id            : ID!
+  name          : String!
+  description   : String!
+
+  tags          : [Product]!     @relation(name: "TAGGED"       , direction: IN)
+
+  createdAt     : DateTime!
+  updatedAt     : DateTime!
+  deletedAt     : DateTime
+}
+
+type Image {
+  id            : ID!
+  name          : String!
+  description   : String!
+
+  products      : [Product]!     @relation(name: "IMAGES"   , direction: OUT)
+  features      : [Product]!     @relation(name: "FEATURES" , direction: OUT)
+
+  createdAt     : DateTime!
+  updatedAt     : DateTime!
+  deletedAt     : DateTime
+}
+#+end_src
+
+#+INCLUDE: schema.gql src graphql
 * Definitions
 
 The types defined in =schema.gql=:
@@ -24,7 +121,7 @@ A regex for capturing lines containing a =graphql= definition using the types
 extracted from the previous command.
 
 #+name: types-filter
-#+begin_src elisp :var types=types
+#+begin_src elisp :var types=types :exports both
 (let ((quoted-types (--map (format "\"%s\"" (car it)) types)))
   (string-join quoted-types "|"))
 #+end_src
@@ -47,8 +144,7 @@ Having generated the =.dot= file, now we can find all the definitions used on
 the graph.
 
 #+name: output-types
-#+begin_src shell :var filter=types-filter _=dot-step-0
-# awk "/$filter/" schema.dot
+#+begin_src shell :var filter=types-filter _=dot-step-0 :exports both
 perl -ne '/"(\w+)" \[label/ && print "$1\n"' schema.dot
 #+end_src
 
@@ -69,7 +165,7 @@ perl -ne '/"(\w+)" \[label/ && print "$1\n"' schema.dot
 It's as easy as subtracting the types of the diagram not defined by us.
 
 #+name: filter-output-types
-#+begin_src elisp :var types=types output-types=output-types
+#+begin_src elisp :var types=types output-types=output-types :exports both
 (let* ((remove-these (funcall (-on #'-difference (-partial #'-flatten-n 1)) output-types types))
       (quoted-types (--map (format "\"%s\"" it) remove-these)))
   (string-join quoted-types "|"))
@@ -84,7 +180,7 @@ These are the ones that we don't want to draw.
 
 Mic check to see the what we are going to run to clean the diagram.
 
-#+begin_src shell :var filter=filter-output-types :results verbatim
+#+begin_src shell :var filter=filter-output-types :results verbatim :exports both
 echo awk "'!(/$filter/)'"
 #+end_src
 
@@ -104,6 +200,3 @@ The generated diagram for our types are as follow:
 
 [[file:schema.png]]
 
-* Schema
-#+name: schema
-#+INCLUDE: schema.gql src graphql
