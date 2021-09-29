@@ -1,0 +1,17 @@
+{
+  "name": "@shopping-cart/types",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "build": "ts-node index"
+  }
+}

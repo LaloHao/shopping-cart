@@ -1,0 +1,24 @@
+{
+  "name": "shopping-cart",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "repository": "git@github.com:LaloHao/shopping-cart.git",
+  "author": "LaloHao <lalohao@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@neo4j/graphql": "^2.2.0",
+    "@types/node": "^16.10.1",
+    "graphql": "^15.6.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "apollo-server": "^3.3.0",
+    "dotenv": "^10.0.0",
+    "neo4j-driver": "^4.3.3"
+  }
+}
