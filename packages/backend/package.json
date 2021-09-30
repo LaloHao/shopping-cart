@@ -1,0 +1,37 @@
+{
+  "name": "@shopping-cart/backend",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "LaloHao <lalohao@gmail.com>",
+  "homepage": "https://github.com/LaloHao/shopping-cart#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LaloHao/shopping-cart.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "start": "node lib/index",
+    "test": "ava"
+  },
+  "bugs": {
+    "url": "https://github.com/LaloHao/shopping-cart/issues"
+  },
+  "dependencies": {
+    "@neo4j/graphql-ogm": "^2.2.0",
+    "@shopping-cart/types": "^1.0.0",
+    "bcrypt": "^5.0.1",
+    "graphql-tools": "^8.2.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+ "extends": "../../tsconfig.json",
+ "compilerOptions": {
+   "outDir": "./lib"
+ },
+ "files": [ "src/index.d.ts" ],
+ "include": [
+   "./src"
+ ]
+}

@@ -1,0 +1,100 @@
+# Placeholder
+# type DateTime {
+
+type Product {
+  id            : ID!            @id
+  name          : String!
+  description   : String!
+
+  featuredImage : Image          @relationship(type: "FEATURES"  , direction: IN)
+  images        : [Image]!       @relationship(type: "IMAGES"    , direction: IN)
+
+  type          : ProductType!   @relationship(type: "TYPE"      , direction: IN)
+  status        : ProductStatus! @relationship(type: "STATUS"    , direction: IN)
+  tags          : [Tag]!         @relationship(type: "TAGGED"    , direction: IN)
+  inventory     : Int!
+
+  publishedBy   : User           @relationship(type: "PUBLISHED" , direction: IN)
+  publishedAt   : DateTime
+
+  createdAt     : DateTime!      @timestamp(operations: [CREATE])
+  updatedAt     : DateTime!      @timestamp(operations: [CREATE  , UPDATE])
+  deletedAt     : DateTime
+}
+
+type User {
+  id            : ID!            @id
+  name          : String!
+  username      : String!
+  password      : String!        @private
+
+  products      : [Product]!     @relationship(type: "PUBLISHED" , direction: OUT)
+  images        : [Image]!       @relationship(type: "UPLOADED"  , direction: OUT)
+
+  createdAt     : DateTime!      @timestamp(operations: [CREATE])
+  updatedAt     : DateTime!      @timestamp(operations: [CREATE  , UPDATE])
+  deletedAt     : DateTime
+}
+
+type ProductType {
+  id            : ID!            @id
+  name          : String!
+  description   : String!
+
+  products      : [Product]!     @relationship(type: "TYPE"      , direction: OUT)
+
+  createdAt     : DateTime!      @timestamp(operations: [CREATE])
+  updatedAt     : DateTime!      @timestamp(operations: [CREATE  , UPDATE])
+  deletedAt     : DateTime
+}
+
+type ProductStatus {
+  id            : ID!            @id
+  name          : String!
+  description   : String!
+
+  products      : [Product]!     @relationship(type: "STATUS"    , direction: OUT)
+
+  createdAt     : DateTime!      @timestamp(operations: [CREATE])
+  updatedAt     : DateTime!      @timestamp(operations: [CREATE  , UPDATE])
+  deletedAt     : DateTime
+}
+
+type Tag {
+  id            : ID!            @id
+  name          : String!
+  description   : String!
+
+  tags          : [Product]!     @relationship(type: "TAGGED"    , direction: IN)
+
+  createdAt     : DateTime!      @timestamp(operations: [CREATE])
+  updatedAt     : DateTime!      @timestamp(operations: [CREATE  , UPDATE])
+  deletedAt     : DateTime
+}
+
+type Image {
+  id            : ID!            @id
+  name          : String!
+  description   : String!
+
+  products      : [Product]!     @relationship(type: "IMAGES"    , direction: OUT)
+  features      : [Product]!     @relationship(type: "FEATURES"  , direction: OUT)
+
+  createdAt     : DateTime!      @timestamp(operations: [CREATE])
+  updatedAt     : DateTime!      @timestamp(operations: [CREATE  , UPDATE])
+  deletedAt     : DateTime
+}
+
+type Mutation {
+  signUp(name: String!, username: String!, password: String!): AuthToken
+  login(username: String!, password: String!): AuthToken
+}
+
+type Query {
+  me: User                       @cypher(statement: "MATCH (u:User { id: $auth.jwt.sub }) RETURN u")
+                                 @auth(rules: [{ isAuthenticated: true }])
+}
+
+type AuthToken @exclude {
+  token: String!
+}
