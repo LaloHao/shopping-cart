@@ -11,7 +11,16 @@
     "lib"
   ],
   "scripts": {
-    "tsc": "tsc",
-    "build": "ts-node index"
+    "generate:operations": "gqlg --schemaFilePath generated/schema.graphql --destDirPath lib",
+    "generate:schema": "graphql-codegen --config schema.yml",
+    "generate:types": "graphql-codegen --config types.yml",
+    "install:operations": "cp -r lib/* generated/",
+    "install:types": "cp src/schema.ts generated/",
+    "operations": "run-s generate:operations install:operations",
+    "schema": "run-s generate:schema",
+    "types": "run-s generate:types install:types",
+    "clean": "rm -rf {lib,generated} && mkdir generated",
+    "build": "run-s clean schema operations types tsc",
+    "tsc": "tsc"
   }
 }

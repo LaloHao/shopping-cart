@@ -1,0 +1,3 @@
+query tagsCount($where: TagWhere){
+    tagsCount(where: $where)
+}

@@ -1,0 +1,3 @@
+query productTypesCount($where: ProductTypeWhere){
+    productTypesCount(where: $where)
+}

@@ -1,0 +1,13 @@
+require:
+  - ts-node/register
+schema:
+  - src/schema.ts:
+      noPluck: true
+overwrite: true
+generates:
+  generated/schema.json:
+    plugins:
+      - introspection
+  generated/schema.graphql:
+    plugins:
+      - schema-ast

@@ -1,0 +1,7 @@
+mutation deleteTags($delete: TagDeleteInput, $where: TagWhere){
+    deleteTags(delete: $delete, where: $where){
+        bookmark
+        nodesDeleted
+        relationshipsDeleted
+    }
+}

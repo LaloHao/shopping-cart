@@ -1,0 +1,1796 @@
+type AuthToken {
+  token: String!
+}
+
+type CreateImagesMutationResponse {
+  images: [Image!]!
+  info: CreateInfo!
+}
+
+type CreateInfo {
+  bookmark: String
+  nodesCreated: Int!
+  relationshipsCreated: Int!
+}
+
+type CreateProductStatusesMutationResponse {
+  info: CreateInfo!
+  productStatuses: [ProductStatus!]!
+}
+
+type CreateProductTypesMutationResponse {
+  info: CreateInfo!
+  productTypes: [ProductType!]!
+}
+
+type CreateProductsMutationResponse {
+  info: CreateInfo!
+  products: [Product!]!
+}
+
+type CreateTagsMutationResponse {
+  info: CreateInfo!
+  tags: [Tag!]!
+}
+
+type CreateUsersMutationResponse {
+  info: CreateInfo!
+  users: [User!]!
+}
+
+"""A date and time, represented as an ISO-8601 string"""
+scalar DateTime
+
+type DeleteInfo {
+  bookmark: String
+  nodesDeleted: Int!
+  relationshipsDeleted: Int!
+}
+
+type Image {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String!
+  features(options: ProductOptions, where: ProductWhere): [Product]!
+  featuresConnection(after: String, first: Int, sort: [ImageFeaturesConnectionSort!], where: ImageFeaturesConnectionWhere): ImageFeaturesConnection!
+  id: ID!
+  name: String!
+  products(options: ProductOptions, where: ProductWhere): [Product]!
+  productsConnection(after: String, first: Int, sort: [ImageProductsConnectionSort!], where: ImageProductsConnectionWhere): ImageProductsConnection!
+  updatedAt: DateTime!
+}
+
+input ImageConnectInput {
+  features: [ImageFeaturesConnectFieldInput!]
+  products: [ImageProductsConnectFieldInput!]
+}
+
+input ImageConnectWhere {
+  node: ImageWhere!
+}
+
+input ImageCreateInput {
+  deletedAt: DateTime
+  description: String!
+  features: ImageFeaturesFieldInput
+  name: String!
+  products: ImageProductsFieldInput
+}
+
+input ImageDeleteInput {
+  features: [ImageFeaturesDeleteFieldInput!]
+  products: [ImageProductsDeleteFieldInput!]
+}
+
+input ImageDisconnectInput {
+  features: [ImageFeaturesDisconnectFieldInput!]
+  products: [ImageProductsDisconnectFieldInput!]
+}
+
+input ImageFeaturesConnectFieldInput {
+  connect: [ProductConnectInput!]
+  where: ProductConnectWhere
+}
+
+type ImageFeaturesConnection {
+  edges: [ImageFeaturesRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ImageFeaturesConnectionSort {
+  node: ProductSort
+}
+
+input ImageFeaturesConnectionWhere {
+  AND: [ImageFeaturesConnectionWhere!]
+  OR: [ImageFeaturesConnectionWhere!]
+  node: ProductWhere
+  node_NOT: ProductWhere
+}
+
+input ImageFeaturesCreateFieldInput {
+  node: ProductCreateInput!
+}
+
+input ImageFeaturesDeleteFieldInput {
+  delete: ProductDeleteInput
+  where: ImageFeaturesConnectionWhere
+}
+
+input ImageFeaturesDisconnectFieldInput {
+  disconnect: ProductDisconnectInput
+  where: ImageFeaturesConnectionWhere
+}
+
+input ImageFeaturesFieldInput {
+  connect: [ImageFeaturesConnectFieldInput!]
+  create: [ImageFeaturesCreateFieldInput!]
+}
+
+type ImageFeaturesRelationship {
+  cursor: String!
+  node: Product!
+}
+
+input ImageFeaturesUpdateConnectionInput {
+  node: ProductUpdateInput
+}
+
+input ImageFeaturesUpdateFieldInput {
+  connect: [ImageFeaturesConnectFieldInput!]
+  create: [ImageFeaturesCreateFieldInput!]
+  delete: [ImageFeaturesDeleteFieldInput!]
+  disconnect: [ImageFeaturesDisconnectFieldInput!]
+  update: ImageFeaturesUpdateConnectionInput
+  where: ImageFeaturesConnectionWhere
+}
+
+input ImageOptions {
+  limit: Int
+  offset: Int
+
+  """
+  Specify one or more ImageSort objects to sort Images by. The sorts will be applied in the order in which they are arranged in the array.
+  """
+  sort: [ImageSort]
+}
+
+input ImageProductsConnectFieldInput {
+  connect: [ProductConnectInput!]
+  where: ProductConnectWhere
+}
+
+type ImageProductsConnection {
+  edges: [ImageProductsRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ImageProductsConnectionSort {
+  node: ProductSort
+}
+
+input ImageProductsConnectionWhere {
+  AND: [ImageProductsConnectionWhere!]
+  OR: [ImageProductsConnectionWhere!]
+  node: ProductWhere
+  node_NOT: ProductWhere
+}
+
+input ImageProductsCreateFieldInput {
+  node: ProductCreateInput!
+}
+
+input ImageProductsDeleteFieldInput {
+  delete: ProductDeleteInput
+  where: ImageProductsConnectionWhere
+}
+
+input ImageProductsDisconnectFieldInput {
+  disconnect: ProductDisconnectInput
+  where: ImageProductsConnectionWhere
+}
+
+input ImageProductsFieldInput {
+  connect: [ImageProductsConnectFieldInput!]
+  create: [ImageProductsCreateFieldInput!]
+}
+
+type ImageProductsRelationship {
+  cursor: String!
+  node: Product!
+}
+
+input ImageProductsUpdateConnectionInput {
+  node: ProductUpdateInput
+}
+
+input ImageProductsUpdateFieldInput {
+  connect: [ImageProductsConnectFieldInput!]
+  create: [ImageProductsCreateFieldInput!]
+  delete: [ImageProductsDeleteFieldInput!]
+  disconnect: [ImageProductsDisconnectFieldInput!]
+  update: ImageProductsUpdateConnectionInput
+  where: ImageProductsConnectionWhere
+}
+
+input ImageRelationInput {
+  features: [ImageFeaturesCreateFieldInput!]
+  products: [ImageProductsCreateFieldInput!]
+}
+
+"""
+Fields to sort Images by. The order in which sorts are applied is not guaranteed when specifying many fields in one ImageSort object.
+"""
+input ImageSort {
+  createdAt: SortDirection
+  deletedAt: SortDirection
+  description: SortDirection
+  id: SortDirection
+  name: SortDirection
+  updatedAt: SortDirection
+}
+
+input ImageUpdateInput {
+  deletedAt: DateTime
+  description: String
+  features: [ImageFeaturesUpdateFieldInput!]
+  name: String
+  products: [ImageProductsUpdateFieldInput!]
+}
+
+input ImageWhere {
+  AND: [ImageWhere!]
+  OR: [ImageWhere!]
+  createdAt: DateTime
+  createdAt_GT: DateTime
+  createdAt_GTE: DateTime
+  createdAt_IN: [DateTime]
+  createdAt_LT: DateTime
+  createdAt_LTE: DateTime
+  createdAt_NOT: DateTime
+  createdAt_NOT_IN: [DateTime]
+  deletedAt: DateTime
+  deletedAt_GT: DateTime
+  deletedAt_GTE: DateTime
+  deletedAt_IN: [DateTime]
+  deletedAt_LT: DateTime
+  deletedAt_LTE: DateTime
+  deletedAt_NOT: DateTime
+  deletedAt_NOT_IN: [DateTime]
+  description: String
+  description_CONTAINS: String
+  description_ENDS_WITH: String
+  description_IN: [String]
+  description_NOT: String
+  description_NOT_CONTAINS: String
+  description_NOT_ENDS_WITH: String
+  description_NOT_IN: [String]
+  description_NOT_STARTS_WITH: String
+  description_STARTS_WITH: String
+  features: ProductWhere
+  featuresConnection: ImageFeaturesConnectionWhere
+  featuresConnection_NOT: ImageFeaturesConnectionWhere
+  features_NOT: ProductWhere
+  id: ID
+  id_CONTAINS: ID
+  id_ENDS_WITH: ID
+  id_IN: [ID]
+  id_NOT: ID
+  id_NOT_CONTAINS: ID
+  id_NOT_ENDS_WITH: ID
+  id_NOT_IN: [ID]
+  id_NOT_STARTS_WITH: ID
+  id_STARTS_WITH: ID
+  name: String
+  name_CONTAINS: String
+  name_ENDS_WITH: String
+  name_IN: [String]
+  name_NOT: String
+  name_NOT_CONTAINS: String
+  name_NOT_ENDS_WITH: String
+  name_NOT_IN: [String]
+  name_NOT_STARTS_WITH: String
+  name_STARTS_WITH: String
+  products: ProductWhere
+  productsConnection: ImageProductsConnectionWhere
+  productsConnection_NOT: ImageProductsConnectionWhere
+  products_NOT: ProductWhere
+  updatedAt: DateTime
+  updatedAt_GT: DateTime
+  updatedAt_GTE: DateTime
+  updatedAt_IN: [DateTime]
+  updatedAt_LT: DateTime
+  updatedAt_LTE: DateTime
+  updatedAt_NOT: DateTime
+  updatedAt_NOT_IN: [DateTime]
+}
+
+type Mutation {
+  createImages(input: [ImageCreateInput!]!): CreateImagesMutationResponse!
+  createProductStatuses(input: [ProductStatusCreateInput!]!): CreateProductStatusesMutationResponse!
+  createProductTypes(input: [ProductTypeCreateInput!]!): CreateProductTypesMutationResponse!
+  createProducts(input: [ProductCreateInput!]!): CreateProductsMutationResponse!
+  createTags(input: [TagCreateInput!]!): CreateTagsMutationResponse!
+  createUsers(input: [UserCreateInput!]!): CreateUsersMutationResponse!
+  deleteImages(delete: ImageDeleteInput, where: ImageWhere): DeleteInfo!
+  deleteProductStatuses(delete: ProductStatusDeleteInput, where: ProductStatusWhere): DeleteInfo!
+  deleteProductTypes(delete: ProductTypeDeleteInput, where: ProductTypeWhere): DeleteInfo!
+  deleteProducts(delete: ProductDeleteInput, where: ProductWhere): DeleteInfo!
+  deleteTags(delete: TagDeleteInput, where: TagWhere): DeleteInfo!
+  deleteUsers(delete: UserDeleteInput, where: UserWhere): DeleteInfo!
+  login(password: String!, username: String!): AuthToken
+  signUp(name: String!, password: String!, username: String!): AuthToken
+  updateImages(connect: ImageConnectInput, create: ImageRelationInput, delete: ImageDeleteInput, disconnect: ImageDisconnectInput, update: ImageUpdateInput, where: ImageWhere): UpdateImagesMutationResponse!
+  updateProductStatuses(connect: ProductStatusConnectInput, create: ProductStatusRelationInput, delete: ProductStatusDeleteInput, disconnect: ProductStatusDisconnectInput, update: ProductStatusUpdateInput, where: ProductStatusWhere): UpdateProductStatusesMutationResponse!
+  updateProductTypes(connect: ProductTypeConnectInput, create: ProductTypeRelationInput, delete: ProductTypeDeleteInput, disconnect: ProductTypeDisconnectInput, update: ProductTypeUpdateInput, where: ProductTypeWhere): UpdateProductTypesMutationResponse!
+  updateProducts(connect: ProductConnectInput, create: ProductRelationInput, delete: ProductDeleteInput, disconnect: ProductDisconnectInput, update: ProductUpdateInput, where: ProductWhere): UpdateProductsMutationResponse!
+  updateTags(connect: TagConnectInput, create: TagRelationInput, delete: TagDeleteInput, disconnect: TagDisconnectInput, update: TagUpdateInput, where: TagWhere): UpdateTagsMutationResponse!
+  updateUsers(connect: UserConnectInput, create: UserRelationInput, delete: UserDeleteInput, disconnect: UserDisconnectInput, update: UserUpdateInput, where: UserWhere): UpdateUsersMutationResponse!
+}
+
+"""Pagination information (Relay)"""
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Product {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String!
+  featuredImage(options: ImageOptions, where: ImageWhere): Image
+  featuredImageConnection(after: String, first: Int, sort: [ProductFeaturedImageConnectionSort!], where: ProductFeaturedImageConnectionWhere): ProductFeaturedImageConnection!
+  id: ID!
+  images(options: ImageOptions, where: ImageWhere): [Image]!
+  imagesConnection(after: String, first: Int, sort: [ProductImagesConnectionSort!], where: ProductImagesConnectionWhere): ProductImagesConnection!
+  inventory: Int!
+  name: String!
+  publishedAt: DateTime
+  publishedBy(options: UserOptions, where: UserWhere): User
+  publishedByConnection(after: String, first: Int, sort: [ProductPublishedByConnectionSort!], where: ProductPublishedByConnectionWhere): ProductPublishedByConnection!
+  status(options: ProductStatusOptions, where: ProductStatusWhere): ProductStatus!
+  statusConnection(after: String, first: Int, sort: [ProductStatusConnectionSort!], where: ProductStatusConnectionWhere): ProductStatusConnection!
+  tags(options: TagOptions, where: TagWhere): [Tag]!
+  tagsConnection(after: String, first: Int, sort: [ProductTagsConnectionSort!], where: ProductTagsConnectionWhere): ProductTagsConnection!
+  type(options: ProductTypeOptions, where: ProductTypeWhere): ProductType!
+  typeConnection(after: String, first: Int, sort: [ProductTypeConnectionSort!], where: ProductTypeConnectionWhere): ProductTypeConnection!
+  updatedAt: DateTime!
+}
+
+input ProductConnectInput {
+  featuredImage: ProductFeaturedImageConnectFieldInput
+  images: [ProductImagesConnectFieldInput!]
+  publishedBy: ProductPublishedByConnectFieldInput
+  status: ProductStatusConnectFieldInput
+  tags: [ProductTagsConnectFieldInput!]
+  type: ProductTypeConnectFieldInput
+}
+
+input ProductConnectWhere {
+  node: ProductWhere!
+}
+
+input ProductCreateInput {
+  deletedAt: DateTime
+  description: String!
+  featuredImage: ProductFeaturedImageFieldInput
+  images: ProductImagesFieldInput
+  inventory: Int!
+  name: String!
+  publishedAt: DateTime
+  publishedBy: ProductPublishedByFieldInput
+  status: ProductStatusFieldInput
+  tags: ProductTagsFieldInput
+  type: ProductTypeFieldInput
+}
+
+input ProductDeleteInput {
+  featuredImage: ProductFeaturedImageDeleteFieldInput
+  images: [ProductImagesDeleteFieldInput!]
+  publishedBy: ProductPublishedByDeleteFieldInput
+  status: ProductStatusDeleteFieldInput
+  tags: [ProductTagsDeleteFieldInput!]
+  type: ProductTypeDeleteFieldInput
+}
+
+input ProductDisconnectInput {
+  featuredImage: ProductFeaturedImageDisconnectFieldInput
+  images: [ProductImagesDisconnectFieldInput!]
+  publishedBy: ProductPublishedByDisconnectFieldInput
+  status: ProductStatusDisconnectFieldInput
+  tags: [ProductTagsDisconnectFieldInput!]
+  type: ProductTypeDisconnectFieldInput
+}
+
+input ProductFeaturedImageConnectFieldInput {
+  connect: ImageConnectInput
+  where: ImageConnectWhere
+}
+
+type ProductFeaturedImageConnection {
+  edges: [ProductFeaturedImageRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductFeaturedImageConnectionSort {
+  node: ImageSort
+}
+
+input ProductFeaturedImageConnectionWhere {
+  AND: [ProductFeaturedImageConnectionWhere!]
+  OR: [ProductFeaturedImageConnectionWhere!]
+  node: ImageWhere
+  node_NOT: ImageWhere
+}
+
+input ProductFeaturedImageCreateFieldInput {
+  node: ImageCreateInput!
+}
+
+input ProductFeaturedImageDeleteFieldInput {
+  delete: ImageDeleteInput
+  where: ProductFeaturedImageConnectionWhere
+}
+
+input ProductFeaturedImageDisconnectFieldInput {
+  disconnect: ImageDisconnectInput
+  where: ProductFeaturedImageConnectionWhere
+}
+
+input ProductFeaturedImageFieldInput {
+  connect: ProductFeaturedImageConnectFieldInput
+  create: ProductFeaturedImageCreateFieldInput
+}
+
+type ProductFeaturedImageRelationship {
+  cursor: String!
+  node: Image!
+}
+
+input ProductFeaturedImageUpdateConnectionInput {
+  node: ImageUpdateInput
+}
+
+input ProductFeaturedImageUpdateFieldInput {
+  connect: ProductFeaturedImageConnectFieldInput
+  create: ProductFeaturedImageCreateFieldInput
+  delete: ProductFeaturedImageDeleteFieldInput
+  disconnect: ProductFeaturedImageDisconnectFieldInput
+  update: ProductFeaturedImageUpdateConnectionInput
+  where: ProductFeaturedImageConnectionWhere
+}
+
+input ProductImagesConnectFieldInput {
+  connect: [ImageConnectInput!]
+  where: ImageConnectWhere
+}
+
+type ProductImagesConnection {
+  edges: [ProductImagesRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductImagesConnectionSort {
+  node: ImageSort
+}
+
+input ProductImagesConnectionWhere {
+  AND: [ProductImagesConnectionWhere!]
+  OR: [ProductImagesConnectionWhere!]
+  node: ImageWhere
+  node_NOT: ImageWhere
+}
+
+input ProductImagesCreateFieldInput {
+  node: ImageCreateInput!
+}
+
+input ProductImagesDeleteFieldInput {
+  delete: ImageDeleteInput
+  where: ProductImagesConnectionWhere
+}
+
+input ProductImagesDisconnectFieldInput {
+  disconnect: ImageDisconnectInput
+  where: ProductImagesConnectionWhere
+}
+
+input ProductImagesFieldInput {
+  connect: [ProductImagesConnectFieldInput!]
+  create: [ProductImagesCreateFieldInput!]
+}
+
+type ProductImagesRelationship {
+  cursor: String!
+  node: Image!
+}
+
+input ProductImagesUpdateConnectionInput {
+  node: ImageUpdateInput
+}
+
+input ProductImagesUpdateFieldInput {
+  connect: [ProductImagesConnectFieldInput!]
+  create: [ProductImagesCreateFieldInput!]
+  delete: [ProductImagesDeleteFieldInput!]
+  disconnect: [ProductImagesDisconnectFieldInput!]
+  update: ProductImagesUpdateConnectionInput
+  where: ProductImagesConnectionWhere
+}
+
+input ProductOptions {
+  limit: Int
+  offset: Int
+
+  """
+  Specify one or more ProductSort objects to sort Products by. The sorts will be applied in the order in which they are arranged in the array.
+  """
+  sort: [ProductSort]
+}
+
+input ProductPublishedByConnectFieldInput {
+  connect: UserConnectInput
+  where: UserConnectWhere
+}
+
+type ProductPublishedByConnection {
+  edges: [ProductPublishedByRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductPublishedByConnectionSort {
+  node: UserSort
+}
+
+input ProductPublishedByConnectionWhere {
+  AND: [ProductPublishedByConnectionWhere!]
+  OR: [ProductPublishedByConnectionWhere!]
+  node: UserWhere
+  node_NOT: UserWhere
+}
+
+input ProductPublishedByCreateFieldInput {
+  node: UserCreateInput!
+}
+
+input ProductPublishedByDeleteFieldInput {
+  delete: UserDeleteInput
+  where: ProductPublishedByConnectionWhere
+}
+
+input ProductPublishedByDisconnectFieldInput {
+  disconnect: UserDisconnectInput
+  where: ProductPublishedByConnectionWhere
+}
+
+input ProductPublishedByFieldInput {
+  connect: ProductPublishedByConnectFieldInput
+  create: ProductPublishedByCreateFieldInput
+}
+
+type ProductPublishedByRelationship {
+  cursor: String!
+  node: User!
+}
+
+input ProductPublishedByUpdateConnectionInput {
+  node: UserUpdateInput
+}
+
+input ProductPublishedByUpdateFieldInput {
+  connect: ProductPublishedByConnectFieldInput
+  create: ProductPublishedByCreateFieldInput
+  delete: ProductPublishedByDeleteFieldInput
+  disconnect: ProductPublishedByDisconnectFieldInput
+  update: ProductPublishedByUpdateConnectionInput
+  where: ProductPublishedByConnectionWhere
+}
+
+input ProductRelationInput {
+  featuredImage: ProductFeaturedImageCreateFieldInput
+  images: [ProductImagesCreateFieldInput!]
+  publishedBy: ProductPublishedByCreateFieldInput
+  status: ProductStatusCreateFieldInput
+  tags: [ProductTagsCreateFieldInput!]
+  type: ProductTypeCreateFieldInput
+}
+
+"""
+Fields to sort Products by. The order in which sorts are applied is not guaranteed when specifying many fields in one ProductSort object.
+"""
+input ProductSort {
+  createdAt: SortDirection
+  deletedAt: SortDirection
+  description: SortDirection
+  id: SortDirection
+  inventory: SortDirection
+  name: SortDirection
+  publishedAt: SortDirection
+  updatedAt: SortDirection
+}
+
+type ProductStatus {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String!
+  id: ID!
+  name: String!
+  products(options: ProductOptions, where: ProductWhere): [Product]!
+  productsConnection(after: String, first: Int, sort: [ProductStatusProductsConnectionSort!], where: ProductStatusProductsConnectionWhere): ProductStatusProductsConnection!
+  updatedAt: DateTime!
+}
+
+input ProductStatusConnectFieldInput {
+  connect: ProductStatusConnectInput
+  where: ProductStatusConnectWhere
+}
+
+input ProductStatusConnectInput {
+  products: [ProductStatusProductsConnectFieldInput!]
+}
+
+input ProductStatusConnectWhere {
+  node: ProductStatusWhere!
+}
+
+type ProductStatusConnection {
+  edges: [ProductStatusRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductStatusConnectionSort {
+  node: ProductStatusSort
+}
+
+input ProductStatusConnectionWhere {
+  AND: [ProductStatusConnectionWhere!]
+  OR: [ProductStatusConnectionWhere!]
+  node: ProductStatusWhere
+  node_NOT: ProductStatusWhere
+}
+
+input ProductStatusCreateFieldInput {
+  node: ProductStatusCreateInput!
+}
+
+input ProductStatusCreateInput {
+  deletedAt: DateTime
+  description: String!
+  name: String!
+  products: ProductStatusProductsFieldInput
+}
+
+input ProductStatusDeleteFieldInput {
+  delete: ProductStatusDeleteInput
+  where: ProductStatusConnectionWhere
+}
+
+input ProductStatusDeleteInput {
+  products: [ProductStatusProductsDeleteFieldInput!]
+}
+
+input ProductStatusDisconnectFieldInput {
+  disconnect: ProductStatusDisconnectInput
+  where: ProductStatusConnectionWhere
+}
+
+input ProductStatusDisconnectInput {
+  products: [ProductStatusProductsDisconnectFieldInput!]
+}
+
+input ProductStatusFieldInput {
+  connect: ProductStatusConnectFieldInput
+  create: ProductStatusCreateFieldInput
+}
+
+input ProductStatusOptions {
+  limit: Int
+  offset: Int
+
+  """
+  Specify one or more ProductStatusSort objects to sort ProductStatuses by. The sorts will be applied in the order in which they are arranged in the array.
+  """
+  sort: [ProductStatusSort]
+}
+
+input ProductStatusProductsConnectFieldInput {
+  connect: [ProductConnectInput!]
+  where: ProductConnectWhere
+}
+
+type ProductStatusProductsConnection {
+  edges: [ProductStatusProductsRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductStatusProductsConnectionSort {
+  node: ProductSort
+}
+
+input ProductStatusProductsConnectionWhere {
+  AND: [ProductStatusProductsConnectionWhere!]
+  OR: [ProductStatusProductsConnectionWhere!]
+  node: ProductWhere
+  node_NOT: ProductWhere
+}
+
+input ProductStatusProductsCreateFieldInput {
+  node: ProductCreateInput!
+}
+
+input ProductStatusProductsDeleteFieldInput {
+  delete: ProductDeleteInput
+  where: ProductStatusProductsConnectionWhere
+}
+
+input ProductStatusProductsDisconnectFieldInput {
+  disconnect: ProductDisconnectInput
+  where: ProductStatusProductsConnectionWhere
+}
+
+input ProductStatusProductsFieldInput {
+  connect: [ProductStatusProductsConnectFieldInput!]
+  create: [ProductStatusProductsCreateFieldInput!]
+}
+
+type ProductStatusProductsRelationship {
+  cursor: String!
+  node: Product!
+}
+
+input ProductStatusProductsUpdateConnectionInput {
+  node: ProductUpdateInput
+}
+
+input ProductStatusProductsUpdateFieldInput {
+  connect: [ProductStatusProductsConnectFieldInput!]
+  create: [ProductStatusProductsCreateFieldInput!]
+  delete: [ProductStatusProductsDeleteFieldInput!]
+  disconnect: [ProductStatusProductsDisconnectFieldInput!]
+  update: ProductStatusProductsUpdateConnectionInput
+  where: ProductStatusProductsConnectionWhere
+}
+
+input ProductStatusRelationInput {
+  products: [ProductStatusProductsCreateFieldInput!]
+}
+
+type ProductStatusRelationship {
+  cursor: String!
+  node: ProductStatus!
+}
+
+"""
+Fields to sort ProductStatuses by. The order in which sorts are applied is not guaranteed when specifying many fields in one ProductStatusSort object.
+"""
+input ProductStatusSort {
+  createdAt: SortDirection
+  deletedAt: SortDirection
+  description: SortDirection
+  id: SortDirection
+  name: SortDirection
+  updatedAt: SortDirection
+}
+
+input ProductStatusUpdateConnectionInput {
+  node: ProductStatusUpdateInput
+}
+
+input ProductStatusUpdateFieldInput {
+  connect: ProductStatusConnectFieldInput
+  create: ProductStatusCreateFieldInput
+  delete: ProductStatusDeleteFieldInput
+  disconnect: ProductStatusDisconnectFieldInput
+  update: ProductStatusUpdateConnectionInput
+  where: ProductStatusConnectionWhere
+}
+
+input ProductStatusUpdateInput {
+  deletedAt: DateTime
+  description: String
+  name: String
+  products: [ProductStatusProductsUpdateFieldInput!]
+}
+
+input ProductStatusWhere {
+  AND: [ProductStatusWhere!]
+  OR: [ProductStatusWhere!]
+  createdAt: DateTime
+  createdAt_GT: DateTime
+  createdAt_GTE: DateTime
+  createdAt_IN: [DateTime]
+  createdAt_LT: DateTime
+  createdAt_LTE: DateTime
+  createdAt_NOT: DateTime
+  createdAt_NOT_IN: [DateTime]
+  deletedAt: DateTime
+  deletedAt_GT: DateTime
+  deletedAt_GTE: DateTime
+  deletedAt_IN: [DateTime]
+  deletedAt_LT: DateTime
+  deletedAt_LTE: DateTime
+  deletedAt_NOT: DateTime
+  deletedAt_NOT_IN: [DateTime]
+  description: String
+  description_CONTAINS: String
+  description_ENDS_WITH: String
+  description_IN: [String]
+  description_NOT: String
+  description_NOT_CONTAINS: String
+  description_NOT_ENDS_WITH: String
+  description_NOT_IN: [String]
+  description_NOT_STARTS_WITH: String
+  description_STARTS_WITH: String
+  id: ID
+  id_CONTAINS: ID
+  id_ENDS_WITH: ID
+  id_IN: [ID]
+  id_NOT: ID
+  id_NOT_CONTAINS: ID
+  id_NOT_ENDS_WITH: ID
+  id_NOT_IN: [ID]
+  id_NOT_STARTS_WITH: ID
+  id_STARTS_WITH: ID
+  name: String
+  name_CONTAINS: String
+  name_ENDS_WITH: String
+  name_IN: [String]
+  name_NOT: String
+  name_NOT_CONTAINS: String
+  name_NOT_ENDS_WITH: String
+  name_NOT_IN: [String]
+  name_NOT_STARTS_WITH: String
+  name_STARTS_WITH: String
+  products: ProductWhere
+  productsConnection: ProductStatusProductsConnectionWhere
+  productsConnection_NOT: ProductStatusProductsConnectionWhere
+  products_NOT: ProductWhere
+  updatedAt: DateTime
+  updatedAt_GT: DateTime
+  updatedAt_GTE: DateTime
+  updatedAt_IN: [DateTime]
+  updatedAt_LT: DateTime
+  updatedAt_LTE: DateTime
+  updatedAt_NOT: DateTime
+  updatedAt_NOT_IN: [DateTime]
+}
+
+input ProductTagsConnectFieldInput {
+  connect: [TagConnectInput!]
+  where: TagConnectWhere
+}
+
+type ProductTagsConnection {
+  edges: [ProductTagsRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductTagsConnectionSort {
+  node: TagSort
+}
+
+input ProductTagsConnectionWhere {
+  AND: [ProductTagsConnectionWhere!]
+  OR: [ProductTagsConnectionWhere!]
+  node: TagWhere
+  node_NOT: TagWhere
+}
+
+input ProductTagsCreateFieldInput {
+  node: TagCreateInput!
+}
+
+input ProductTagsDeleteFieldInput {
+  delete: TagDeleteInput
+  where: ProductTagsConnectionWhere
+}
+
+input ProductTagsDisconnectFieldInput {
+  disconnect: TagDisconnectInput
+  where: ProductTagsConnectionWhere
+}
+
+input ProductTagsFieldInput {
+  connect: [ProductTagsConnectFieldInput!]
+  create: [ProductTagsCreateFieldInput!]
+}
+
+type ProductTagsRelationship {
+  cursor: String!
+  node: Tag!
+}
+
+input ProductTagsUpdateConnectionInput {
+  node: TagUpdateInput
+}
+
+input ProductTagsUpdateFieldInput {
+  connect: [ProductTagsConnectFieldInput!]
+  create: [ProductTagsCreateFieldInput!]
+  delete: [ProductTagsDeleteFieldInput!]
+  disconnect: [ProductTagsDisconnectFieldInput!]
+  update: ProductTagsUpdateConnectionInput
+  where: ProductTagsConnectionWhere
+}
+
+type ProductType {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String!
+  id: ID!
+  name: String!
+  products(options: ProductOptions, where: ProductWhere): [Product]!
+  productsConnection(after: String, first: Int, sort: [ProductTypeProductsConnectionSort!], where: ProductTypeProductsConnectionWhere): ProductTypeProductsConnection!
+  updatedAt: DateTime!
+}
+
+input ProductTypeConnectFieldInput {
+  connect: ProductTypeConnectInput
+  where: ProductTypeConnectWhere
+}
+
+input ProductTypeConnectInput {
+  products: [ProductTypeProductsConnectFieldInput!]
+}
+
+input ProductTypeConnectWhere {
+  node: ProductTypeWhere!
+}
+
+type ProductTypeConnection {
+  edges: [ProductTypeRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductTypeConnectionSort {
+  node: ProductTypeSort
+}
+
+input ProductTypeConnectionWhere {
+  AND: [ProductTypeConnectionWhere!]
+  OR: [ProductTypeConnectionWhere!]
+  node: ProductTypeWhere
+  node_NOT: ProductTypeWhere
+}
+
+input ProductTypeCreateFieldInput {
+  node: ProductTypeCreateInput!
+}
+
+input ProductTypeCreateInput {
+  deletedAt: DateTime
+  description: String!
+  name: String!
+  products: ProductTypeProductsFieldInput
+}
+
+input ProductTypeDeleteFieldInput {
+  delete: ProductTypeDeleteInput
+  where: ProductTypeConnectionWhere
+}
+
+input ProductTypeDeleteInput {
+  products: [ProductTypeProductsDeleteFieldInput!]
+}
+
+input ProductTypeDisconnectFieldInput {
+  disconnect: ProductTypeDisconnectInput
+  where: ProductTypeConnectionWhere
+}
+
+input ProductTypeDisconnectInput {
+  products: [ProductTypeProductsDisconnectFieldInput!]
+}
+
+input ProductTypeFieldInput {
+  connect: ProductTypeConnectFieldInput
+  create: ProductTypeCreateFieldInput
+}
+
+input ProductTypeOptions {
+  limit: Int
+  offset: Int
+
+  """
+  Specify one or more ProductTypeSort objects to sort ProductTypes by. The sorts will be applied in the order in which they are arranged in the array.
+  """
+  sort: [ProductTypeSort]
+}
+
+input ProductTypeProductsConnectFieldInput {
+  connect: [ProductConnectInput!]
+  where: ProductConnectWhere
+}
+
+type ProductTypeProductsConnection {
+  edges: [ProductTypeProductsRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ProductTypeProductsConnectionSort {
+  node: ProductSort
+}
+
+input ProductTypeProductsConnectionWhere {
+  AND: [ProductTypeProductsConnectionWhere!]
+  OR: [ProductTypeProductsConnectionWhere!]
+  node: ProductWhere
+  node_NOT: ProductWhere
+}
+
+input ProductTypeProductsCreateFieldInput {
+  node: ProductCreateInput!
+}
+
+input ProductTypeProductsDeleteFieldInput {
+  delete: ProductDeleteInput
+  where: ProductTypeProductsConnectionWhere
+}
+
+input ProductTypeProductsDisconnectFieldInput {
+  disconnect: ProductDisconnectInput
+  where: ProductTypeProductsConnectionWhere
+}
+
+input ProductTypeProductsFieldInput {
+  connect: [ProductTypeProductsConnectFieldInput!]
+  create: [ProductTypeProductsCreateFieldInput!]
+}
+
+type ProductTypeProductsRelationship {
+  cursor: String!
+  node: Product!
+}
+
+input ProductTypeProductsUpdateConnectionInput {
+  node: ProductUpdateInput
+}
+
+input ProductTypeProductsUpdateFieldInput {
+  connect: [ProductTypeProductsConnectFieldInput!]
+  create: [ProductTypeProductsCreateFieldInput!]
+  delete: [ProductTypeProductsDeleteFieldInput!]
+  disconnect: [ProductTypeProductsDisconnectFieldInput!]
+  update: ProductTypeProductsUpdateConnectionInput
+  where: ProductTypeProductsConnectionWhere
+}
+
+input ProductTypeRelationInput {
+  products: [ProductTypeProductsCreateFieldInput!]
+}
+
+type ProductTypeRelationship {
+  cursor: String!
+  node: ProductType!
+}
+
+"""
+Fields to sort ProductTypes by. The order in which sorts are applied is not guaranteed when specifying many fields in one ProductTypeSort object.
+"""
+input ProductTypeSort {
+  createdAt: SortDirection
+  deletedAt: SortDirection
+  description: SortDirection
+  id: SortDirection
+  name: SortDirection
+  updatedAt: SortDirection
+}
+
+input ProductTypeUpdateConnectionInput {
+  node: ProductTypeUpdateInput
+}
+
+input ProductTypeUpdateFieldInput {
+  connect: ProductTypeConnectFieldInput
+  create: ProductTypeCreateFieldInput
+  delete: ProductTypeDeleteFieldInput
+  disconnect: ProductTypeDisconnectFieldInput
+  update: ProductTypeUpdateConnectionInput
+  where: ProductTypeConnectionWhere
+}
+
+input ProductTypeUpdateInput {
+  deletedAt: DateTime
+  description: String
+  name: String
+  products: [ProductTypeProductsUpdateFieldInput!]
+}
+
+input ProductTypeWhere {
+  AND: [ProductTypeWhere!]
+  OR: [ProductTypeWhere!]
+  createdAt: DateTime
+  createdAt_GT: DateTime
+  createdAt_GTE: DateTime
+  createdAt_IN: [DateTime]
+  createdAt_LT: DateTime
+  createdAt_LTE: DateTime
+  createdAt_NOT: DateTime
+  createdAt_NOT_IN: [DateTime]
+  deletedAt: DateTime
+  deletedAt_GT: DateTime
+  deletedAt_GTE: DateTime
+  deletedAt_IN: [DateTime]
+  deletedAt_LT: DateTime
+  deletedAt_LTE: DateTime
+  deletedAt_NOT: DateTime
+  deletedAt_NOT_IN: [DateTime]
+  description: String
+  description_CONTAINS: String
+  description_ENDS_WITH: String
+  description_IN: [String]
+  description_NOT: String
+  description_NOT_CONTAINS: String
+  description_NOT_ENDS_WITH: String
+  description_NOT_IN: [String]
+  description_NOT_STARTS_WITH: String
+  description_STARTS_WITH: String
+  id: ID
+  id_CONTAINS: ID
+  id_ENDS_WITH: ID
+  id_IN: [ID]
+  id_NOT: ID
+  id_NOT_CONTAINS: ID
+  id_NOT_ENDS_WITH: ID
+  id_NOT_IN: [ID]
+  id_NOT_STARTS_WITH: ID
+  id_STARTS_WITH: ID
+  name: String
+  name_CONTAINS: String
+  name_ENDS_WITH: String
+  name_IN: [String]
+  name_NOT: String
+  name_NOT_CONTAINS: String
+  name_NOT_ENDS_WITH: String
+  name_NOT_IN: [String]
+  name_NOT_STARTS_WITH: String
+  name_STARTS_WITH: String
+  products: ProductWhere
+  productsConnection: ProductTypeProductsConnectionWhere
+  productsConnection_NOT: ProductTypeProductsConnectionWhere
+  products_NOT: ProductWhere
+  updatedAt: DateTime
+  updatedAt_GT: DateTime
+  updatedAt_GTE: DateTime
+  updatedAt_IN: [DateTime]
+  updatedAt_LT: DateTime
+  updatedAt_LTE: DateTime
+  updatedAt_NOT: DateTime
+  updatedAt_NOT_IN: [DateTime]
+}
+
+input ProductUpdateInput {
+  deletedAt: DateTime
+  description: String
+  featuredImage: ProductFeaturedImageUpdateFieldInput
+  images: [ProductImagesUpdateFieldInput!]
+  inventory: Int
+  name: String
+  publishedAt: DateTime
+  publishedBy: ProductPublishedByUpdateFieldInput
+  status: ProductStatusUpdateFieldInput
+  tags: [ProductTagsUpdateFieldInput!]
+  type: ProductTypeUpdateFieldInput
+}
+
+input ProductWhere {
+  AND: [ProductWhere!]
+  OR: [ProductWhere!]
+  createdAt: DateTime
+  createdAt_GT: DateTime
+  createdAt_GTE: DateTime
+  createdAt_IN: [DateTime]
+  createdAt_LT: DateTime
+  createdAt_LTE: DateTime
+  createdAt_NOT: DateTime
+  createdAt_NOT_IN: [DateTime]
+  deletedAt: DateTime
+  deletedAt_GT: DateTime
+  deletedAt_GTE: DateTime
+  deletedAt_IN: [DateTime]
+  deletedAt_LT: DateTime
+  deletedAt_LTE: DateTime
+  deletedAt_NOT: DateTime
+  deletedAt_NOT_IN: [DateTime]
+  description: String
+  description_CONTAINS: String
+  description_ENDS_WITH: String
+  description_IN: [String]
+  description_NOT: String
+  description_NOT_CONTAINS: String
+  description_NOT_ENDS_WITH: String
+  description_NOT_IN: [String]
+  description_NOT_STARTS_WITH: String
+  description_STARTS_WITH: String
+  featuredImage: ImageWhere
+  featuredImageConnection: ProductFeaturedImageConnectionWhere
+  featuredImageConnection_NOT: ProductFeaturedImageConnectionWhere
+  featuredImage_NOT: ImageWhere
+  id: ID
+  id_CONTAINS: ID
+  id_ENDS_WITH: ID
+  id_IN: [ID]
+  id_NOT: ID
+  id_NOT_CONTAINS: ID
+  id_NOT_ENDS_WITH: ID
+  id_NOT_IN: [ID]
+  id_NOT_STARTS_WITH: ID
+  id_STARTS_WITH: ID
+  images: ImageWhere
+  imagesConnection: ProductImagesConnectionWhere
+  imagesConnection_NOT: ProductImagesConnectionWhere
+  images_NOT: ImageWhere
+  inventory: Int
+  inventory_GT: Int
+  inventory_GTE: Int
+  inventory_IN: [Int]
+  inventory_LT: Int
+  inventory_LTE: Int
+  inventory_NOT: Int
+  inventory_NOT_IN: [Int]
+  name: String
+  name_CONTAINS: String
+  name_ENDS_WITH: String
+  name_IN: [String]
+  name_NOT: String
+  name_NOT_CONTAINS: String
+  name_NOT_ENDS_WITH: String
+  name_NOT_IN: [String]
+  name_NOT_STARTS_WITH: String
+  name_STARTS_WITH: String
+  publishedAt: DateTime
+  publishedAt_GT: DateTime
+  publishedAt_GTE: DateTime
+  publishedAt_IN: [DateTime]
+  publishedAt_LT: DateTime
+  publishedAt_LTE: DateTime
+  publishedAt_NOT: DateTime
+  publishedAt_NOT_IN: [DateTime]
+  publishedBy: UserWhere
+  publishedByConnection: ProductPublishedByConnectionWhere
+  publishedByConnection_NOT: ProductPublishedByConnectionWhere
+  publishedBy_NOT: UserWhere
+  status: ProductStatusWhere
+  statusConnection: ProductStatusConnectionWhere
+  statusConnection_NOT: ProductStatusConnectionWhere
+  status_NOT: ProductStatusWhere
+  tags: TagWhere
+  tagsConnection: ProductTagsConnectionWhere
+  tagsConnection_NOT: ProductTagsConnectionWhere
+  tags_NOT: TagWhere
+  type: ProductTypeWhere
+  typeConnection: ProductTypeConnectionWhere
+  typeConnection_NOT: ProductTypeConnectionWhere
+  type_NOT: ProductTypeWhere
+  updatedAt: DateTime
+  updatedAt_GT: DateTime
+  updatedAt_GTE: DateTime
+  updatedAt_IN: [DateTime]
+  updatedAt_LT: DateTime
+  updatedAt_LTE: DateTime
+  updatedAt_NOT: DateTime
+  updatedAt_NOT_IN: [DateTime]
+}
+
+type Query {
+  images(options: ImageOptions, where: ImageWhere): [Image!]!
+  imagesCount(where: ImageWhere): Int!
+  me: User
+  productStatuses(options: ProductStatusOptions, where: ProductStatusWhere): [ProductStatus!]!
+  productStatusesCount(where: ProductStatusWhere): Int!
+  productTypes(options: ProductTypeOptions, where: ProductTypeWhere): [ProductType!]!
+  productTypesCount(where: ProductTypeWhere): Int!
+  products(options: ProductOptions, where: ProductWhere): [Product!]!
+  productsCount(where: ProductWhere): Int!
+  tags(options: TagOptions, where: TagWhere): [Tag!]!
+  tagsCount(where: TagWhere): Int!
+  users(options: UserOptions, where: UserWhere): [User!]!
+  usersCount(where: UserWhere): Int!
+}
+
+enum SortDirection {
+  """Sort by field values in ascending order."""
+  ASC
+
+  """Sort by field values in descending order."""
+  DESC
+}
+
+type Tag {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String!
+  id: ID!
+  name: String!
+  tags(options: ProductOptions, where: ProductWhere): [Product]!
+  tagsConnection(after: String, first: Int, sort: [TagTagsConnectionSort!], where: TagTagsConnectionWhere): TagTagsConnection!
+  updatedAt: DateTime!
+}
+
+input TagConnectInput {
+  tags: [TagTagsConnectFieldInput!]
+}
+
+input TagConnectWhere {
+  node: TagWhere!
+}
+
+input TagCreateInput {
+  deletedAt: DateTime
+  description: String!
+  name: String!
+  tags: TagTagsFieldInput
+}
+
+input TagDeleteInput {
+  tags: [TagTagsDeleteFieldInput!]
+}
+
+input TagDisconnectInput {
+  tags: [TagTagsDisconnectFieldInput!]
+}
+
+input TagOptions {
+  limit: Int
+  offset: Int
+
+  """
+  Specify one or more TagSort objects to sort Tags by. The sorts will be applied in the order in which they are arranged in the array.
+  """
+  sort: [TagSort]
+}
+
+input TagRelationInput {
+  tags: [TagTagsCreateFieldInput!]
+}
+
+"""
+Fields to sort Tags by. The order in which sorts are applied is not guaranteed when specifying many fields in one TagSort object.
+"""
+input TagSort {
+  createdAt: SortDirection
+  deletedAt: SortDirection
+  description: SortDirection
+  id: SortDirection
+  name: SortDirection
+  updatedAt: SortDirection
+}
+
+input TagTagsConnectFieldInput {
+  connect: [ProductConnectInput!]
+  where: ProductConnectWhere
+}
+
+type TagTagsConnection {
+  edges: [TagTagsRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input TagTagsConnectionSort {
+  node: ProductSort
+}
+
+input TagTagsConnectionWhere {
+  AND: [TagTagsConnectionWhere!]
+  OR: [TagTagsConnectionWhere!]
+  node: ProductWhere
+  node_NOT: ProductWhere
+}
+
+input TagTagsCreateFieldInput {
+  node: ProductCreateInput!
+}
+
+input TagTagsDeleteFieldInput {
+  delete: ProductDeleteInput
+  where: TagTagsConnectionWhere
+}
+
+input TagTagsDisconnectFieldInput {
+  disconnect: ProductDisconnectInput
+  where: TagTagsConnectionWhere
+}
+
+input TagTagsFieldInput {
+  connect: [TagTagsConnectFieldInput!]
+  create: [TagTagsCreateFieldInput!]
+}
+
+type TagTagsRelationship {
+  cursor: String!
+  node: Product!
+}
+
+input TagTagsUpdateConnectionInput {
+  node: ProductUpdateInput
+}
+
+input TagTagsUpdateFieldInput {
+  connect: [TagTagsConnectFieldInput!]
+  create: [TagTagsCreateFieldInput!]
+  delete: [TagTagsDeleteFieldInput!]
+  disconnect: [TagTagsDisconnectFieldInput!]
+  update: TagTagsUpdateConnectionInput
+  where: TagTagsConnectionWhere
+}
+
+input TagUpdateInput {
+  deletedAt: DateTime
+  description: String
+  name: String
+  tags: [TagTagsUpdateFieldInput!]
+}
+
+input TagWhere {
+  AND: [TagWhere!]
+  OR: [TagWhere!]
+  createdAt: DateTime
+  createdAt_GT: DateTime
+  createdAt_GTE: DateTime
+  createdAt_IN: [DateTime]
+  createdAt_LT: DateTime
+  createdAt_LTE: DateTime
+  createdAt_NOT: DateTime
+  createdAt_NOT_IN: [DateTime]
+  deletedAt: DateTime
+  deletedAt_GT: DateTime
+  deletedAt_GTE: DateTime
+  deletedAt_IN: [DateTime]
+  deletedAt_LT: DateTime
+  deletedAt_LTE: DateTime
+  deletedAt_NOT: DateTime
+  deletedAt_NOT_IN: [DateTime]
+  description: String
+  description_CONTAINS: String
+  description_ENDS_WITH: String
+  description_IN: [String]
+  description_NOT: String
+  description_NOT_CONTAINS: String
+  description_NOT_ENDS_WITH: String
+  description_NOT_IN: [String]
+  description_NOT_STARTS_WITH: String
+  description_STARTS_WITH: String
+  id: ID
+  id_CONTAINS: ID
+  id_ENDS_WITH: ID
+  id_IN: [ID]
+  id_NOT: ID
+  id_NOT_CONTAINS: ID
+  id_NOT_ENDS_WITH: ID
+  id_NOT_IN: [ID]
+  id_NOT_STARTS_WITH: ID
+  id_STARTS_WITH: ID
+  name: String
+  name_CONTAINS: String
+  name_ENDS_WITH: String
+  name_IN: [String]
+  name_NOT: String
+  name_NOT_CONTAINS: String
+  name_NOT_ENDS_WITH: String
+  name_NOT_IN: [String]
+  name_NOT_STARTS_WITH: String
+  name_STARTS_WITH: String
+  tags: ProductWhere
+  tagsConnection: TagTagsConnectionWhere
+  tagsConnection_NOT: TagTagsConnectionWhere
+  tags_NOT: ProductWhere
+  updatedAt: DateTime
+  updatedAt_GT: DateTime
+  updatedAt_GTE: DateTime
+  updatedAt_IN: [DateTime]
+  updatedAt_LT: DateTime
+  updatedAt_LTE: DateTime
+  updatedAt_NOT: DateTime
+  updatedAt_NOT_IN: [DateTime]
+}
+
+type UpdateImagesMutationResponse {
+  images: [Image!]!
+  info: UpdateInfo!
+}
+
+type UpdateInfo {
+  bookmark: String
+  nodesCreated: Int!
+  nodesDeleted: Int!
+  relationshipsCreated: Int!
+  relationshipsDeleted: Int!
+}
+
+type UpdateProductStatusesMutationResponse {
+  info: UpdateInfo!
+  productStatuses: [ProductStatus!]!
+}
+
+type UpdateProductTypesMutationResponse {
+  info: UpdateInfo!
+  productTypes: [ProductType!]!
+}
+
+type UpdateProductsMutationResponse {
+  info: UpdateInfo!
+  products: [Product!]!
+}
+
+type UpdateTagsMutationResponse {
+  info: UpdateInfo!
+  tags: [Tag!]!
+}
+
+type UpdateUsersMutationResponse {
+  info: UpdateInfo!
+  users: [User!]!
+}
+
+type User {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  images(options: ImageOptions, where: ImageWhere): [Image]!
+  imagesConnection(after: String, first: Int, sort: [UserImagesConnectionSort!], where: UserImagesConnectionWhere): UserImagesConnection!
+  name: String!
+  products(options: ProductOptions, where: ProductWhere): [Product]!
+  productsConnection(after: String, first: Int, sort: [UserProductsConnectionSort!], where: UserProductsConnectionWhere): UserProductsConnection!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserConnectInput {
+  images: [UserImagesConnectFieldInput!]
+  products: [UserProductsConnectFieldInput!]
+}
+
+input UserConnectWhere {
+  node: UserWhere!
+}
+
+input UserCreateInput {
+  deletedAt: DateTime
+  images: UserImagesFieldInput
+  name: String!
+  products: UserProductsFieldInput
+  username: String!
+}
+
+input UserDeleteInput {
+  images: [UserImagesDeleteFieldInput!]
+  products: [UserProductsDeleteFieldInput!]
+}
+
+input UserDisconnectInput {
+  images: [UserImagesDisconnectFieldInput!]
+  products: [UserProductsDisconnectFieldInput!]
+}
+
+input UserImagesConnectFieldInput {
+  connect: [ImageConnectInput!]
+  where: ImageConnectWhere
+}
+
+type UserImagesConnection {
+  edges: [UserImagesRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input UserImagesConnectionSort {
+  node: ImageSort
+}
+
+input UserImagesConnectionWhere {
+  AND: [UserImagesConnectionWhere!]
+  OR: [UserImagesConnectionWhere!]
+  node: ImageWhere
+  node_NOT: ImageWhere
+}
+
+input UserImagesCreateFieldInput {
+  node: ImageCreateInput!
+}
+
+input UserImagesDeleteFieldInput {
+  delete: ImageDeleteInput
+  where: UserImagesConnectionWhere
+}
+
+input UserImagesDisconnectFieldInput {
+  disconnect: ImageDisconnectInput
+  where: UserImagesConnectionWhere
+}
+
+input UserImagesFieldInput {
+  connect: [UserImagesConnectFieldInput!]
+  create: [UserImagesCreateFieldInput!]
+}
+
+type UserImagesRelationship {
+  cursor: String!
+  node: Image!
+}
+
+input UserImagesUpdateConnectionInput {
+  node: ImageUpdateInput
+}
+
+input UserImagesUpdateFieldInput {
+  connect: [UserImagesConnectFieldInput!]
+  create: [UserImagesCreateFieldInput!]
+  delete: [UserImagesDeleteFieldInput!]
+  disconnect: [UserImagesDisconnectFieldInput!]
+  update: UserImagesUpdateConnectionInput
+  where: UserImagesConnectionWhere
+}
+
+input UserOptions {
+  limit: Int
+  offset: Int
+
+  """
+  Specify one or more UserSort objects to sort Users by. The sorts will be applied in the order in which they are arranged in the array.
+  """
+  sort: [UserSort]
+}
+
+input UserProductsConnectFieldInput {
+  connect: [ProductConnectInput!]
+  where: ProductConnectWhere
+}
+
+type UserProductsConnection {
+  edges: [UserProductsRelationship!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input UserProductsConnectionSort {
+  node: ProductSort
+}
+
+input UserProductsConnectionWhere {
+  AND: [UserProductsConnectionWhere!]
+  OR: [UserProductsConnectionWhere!]
+  node: ProductWhere
+  node_NOT: ProductWhere
+}
+
+input UserProductsCreateFieldInput {
+  node: ProductCreateInput!
+}
+
+input UserProductsDeleteFieldInput {
+  delete: ProductDeleteInput
+  where: UserProductsConnectionWhere
+}
+
+input UserProductsDisconnectFieldInput {
+  disconnect: ProductDisconnectInput
+  where: UserProductsConnectionWhere
+}
+
+input UserProductsFieldInput {
+  connect: [UserProductsConnectFieldInput!]
+  create: [UserProductsCreateFieldInput!]
+}
+
+type UserProductsRelationship {
+  cursor: String!
+  node: Product!
+}
+
+input UserProductsUpdateConnectionInput {
+  node: ProductUpdateInput
+}
+
+input UserProductsUpdateFieldInput {
+  connect: [UserProductsConnectFieldInput!]
+  create: [UserProductsCreateFieldInput!]
+  delete: [UserProductsDeleteFieldInput!]
+  disconnect: [UserProductsDisconnectFieldInput!]
+  update: UserProductsUpdateConnectionInput
+  where: UserProductsConnectionWhere
+}
+
+input UserRelationInput {
+  images: [UserImagesCreateFieldInput!]
+  products: [UserProductsCreateFieldInput!]
+}
+
+"""
+Fields to sort Users by. The order in which sorts are applied is not guaranteed when specifying many fields in one UserSort object.
+"""
+input UserSort {
+  createdAt: SortDirection
+  deletedAt: SortDirection
+  id: SortDirection
+  name: SortDirection
+  updatedAt: SortDirection
+  username: SortDirection
+}
+
+input UserUpdateInput {
+  deletedAt: DateTime
+  images: [UserImagesUpdateFieldInput!]
+  name: String
+  products: [UserProductsUpdateFieldInput!]
+  username: String
+}
+
+input UserWhere {
+  AND: [UserWhere!]
+  OR: [UserWhere!]
+  createdAt: DateTime
+  createdAt_GT: DateTime
+  createdAt_GTE: DateTime
+  createdAt_IN: [DateTime]
+  createdAt_LT: DateTime
+  createdAt_LTE: DateTime
+  createdAt_NOT: DateTime
+  createdAt_NOT_IN: [DateTime]
+  deletedAt: DateTime
+  deletedAt_GT: DateTime
+  deletedAt_GTE: DateTime
+  deletedAt_IN: [DateTime]
+  deletedAt_LT: DateTime
+  deletedAt_LTE: DateTime
+  deletedAt_NOT: DateTime
+  deletedAt_NOT_IN: [DateTime]
+  id: ID
+  id_CONTAINS: ID
+  id_ENDS_WITH: ID
+  id_IN: [ID]
+  id_NOT: ID
+  id_NOT_CONTAINS: ID
+  id_NOT_ENDS_WITH: ID
+  id_NOT_IN: [ID]
+  id_NOT_STARTS_WITH: ID
+  id_STARTS_WITH: ID
+  images: ImageWhere
+  imagesConnection: UserImagesConnectionWhere
+  imagesConnection_NOT: UserImagesConnectionWhere
+  images_NOT: ImageWhere
+  name: String
+  name_CONTAINS: String
+  name_ENDS_WITH: String
+  name_IN: [String]
+  name_NOT: String
+  name_NOT_CONTAINS: String
+  name_NOT_ENDS_WITH: String
+  name_NOT_IN: [String]
+  name_NOT_STARTS_WITH: String
+  name_STARTS_WITH: String
+  products: ProductWhere
+  productsConnection: UserProductsConnectionWhere
+  productsConnection_NOT: UserProductsConnectionWhere
+  products_NOT: ProductWhere
+  updatedAt: DateTime
+  updatedAt_GT: DateTime
+  updatedAt_GTE: DateTime
+  updatedAt_IN: [DateTime]
+  updatedAt_LT: DateTime
+  updatedAt_LTE: DateTime
+  updatedAt_NOT: DateTime
+  updatedAt_NOT_IN: [DateTime]
+  username: String
+  username_CONTAINS: String
+  username_ENDS_WITH: String
+  username_IN: [String]
+  username_NOT: String
+  username_NOT_CONTAINS: String
+  username_NOT_ENDS_WITH: String
+  username_NOT_IN: [String]
+  username_NOT_STARTS_WITH: String
+  username_STARTS_WITH: String
+}
