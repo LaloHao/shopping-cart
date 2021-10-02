@@ -1,6 +1,7 @@
-const neo4j = require('neo4j-driver');
+import neo4j from 'neo4j-driver';
+import type { Driver } from 'neo4j-driver/types';
 
-const driver = neo4j.driver(
+const driver: Driver = neo4j.driver(
     process.env.DB_URI,
     neo4j.auth.basic(
         process.env.DB_USER,

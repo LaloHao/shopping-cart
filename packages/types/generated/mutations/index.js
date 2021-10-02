@@ -1,0 +1,23 @@
+const fs = require('fs');
+const path = require('path');
+
+module.exports.createImages = fs.readFileSync(path.join(__dirname, 'createImages.gql'), 'utf8');
+module.exports.createProductStatuses = fs.readFileSync(path.join(__dirname, 'createProductStatuses.gql'), 'utf8');
+module.exports.createProductTypes = fs.readFileSync(path.join(__dirname, 'createProductTypes.gql'), 'utf8');
+module.exports.createProducts = fs.readFileSync(path.join(__dirname, 'createProducts.gql'), 'utf8');
+module.exports.createTags = fs.readFileSync(path.join(__dirname, 'createTags.gql'), 'utf8');
+module.exports.createUsers = fs.readFileSync(path.join(__dirname, 'createUsers.gql'), 'utf8');
+module.exports.deleteImages = fs.readFileSync(path.join(__dirname, 'deleteImages.gql'), 'utf8');
+module.exports.deleteProductStatuses = fs.readFileSync(path.join(__dirname, 'deleteProductStatuses.gql'), 'utf8');
+module.exports.deleteProductTypes = fs.readFileSync(path.join(__dirname, 'deleteProductTypes.gql'), 'utf8');
+module.exports.deleteProducts = fs.readFileSync(path.join(__dirname, 'deleteProducts.gql'), 'utf8');
+module.exports.deleteTags = fs.readFileSync(path.join(__dirname, 'deleteTags.gql'), 'utf8');
+module.exports.deleteUsers = fs.readFileSync(path.join(__dirname, 'deleteUsers.gql'), 'utf8');
+module.exports.login = fs.readFileSync(path.join(__dirname, 'login.gql'), 'utf8');
+module.exports.signUp = fs.readFileSync(path.join(__dirname, 'signUp.gql'), 'utf8');
+module.exports.updateImages = fs.readFileSync(path.join(__dirname, 'updateImages.gql'), 'utf8');
+module.exports.updateProductStatuses = fs.readFileSync(path.join(__dirname, 'updateProductStatuses.gql'), 'utf8');
+module.exports.updateProductTypes = fs.readFileSync(path.join(__dirname, 'updateProductTypes.gql'), 'utf8');
+module.exports.updateProducts = fs.readFileSync(path.join(__dirname, 'updateProducts.gql'), 'utf8');
+module.exports.updateTags = fs.readFileSync(path.join(__dirname, 'updateTags.gql'), 'utf8');
+module.exports.updateUsers = fs.readFileSync(path.join(__dirname, 'updateUsers.gql'), 'utf8');

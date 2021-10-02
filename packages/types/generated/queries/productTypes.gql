@@ -1,0 +1,473 @@
+query productTypes($after: String, $first: Int, $sort: [ProductFeaturedImageConnectionSort!], $where: ProductFeaturedImageConnectionWhere, $after1: String, $first1: Int, $sort1: [ProductFeaturedImageConnectionSort!], $where1: ProductFeaturedImageConnectionWhere, $after2: String, $first2: Int, $sort2: [ImageFeaturesConnectionSort!], $where2: ImageFeaturesConnectionWhere, $after3: String, $first3: Int, $sort3: [ProductImagesConnectionSort!], $where3: ProductImagesConnectionWhere, $after4: String, $first4: Int, $sort4: [ImageProductsConnectionSort!], $where4: ImageProductsConnectionWhere, $options: ImageOptions, $where5: ImageWhere, $after5: String, $first5: Int, $sort5: [UserImagesConnectionSort!], $where6: UserImagesConnectionWhere, $after6: String, $first6: Int, $sort6: [ProductPublishedByConnectionSort!], $where7: ProductPublishedByConnectionWhere, $after7: String, $first7: Int, $sort7: [ProductStatusConnectionSort!], $where8: ProductStatusConnectionWhere, $after8: String, $first8: Int, $sort8: [ImageProductsConnectionSort!], $where9: ImageProductsConnectionWhere, $options1: ImageOptions, $where10: ImageWhere, $after9: String, $first9: Int, $sort9: [ProductFeaturedImageConnectionSort!], $where11: ProductFeaturedImageConnectionWhere, $options2: ImageOptions, $where12: ImageWhere, $after10: String, $first10: Int, $sort10: [ProductImagesConnectionSort!], $where13: ProductImagesConnectionWhere, $after11: String, $first11: Int, $sort11: [UserProductsConnectionSort!], $where14: UserProductsConnectionWhere, $options3: UserOptions, $where15: UserWhere, $after12: String, $first12: Int, $sort12: [ProductPublishedByConnectionSort!], $where16: ProductPublishedByConnectionWhere, $after13: String, $first13: Int, $sort13: [ProductStatusProductsConnectionSort!], $where17: ProductStatusProductsConnectionWhere, $options4: ProductStatusOptions, $where18: ProductStatusWhere, $after14: String, $first14: Int, $sort14: [ProductStatusConnectionSort!], $where19: ProductStatusConnectionWhere, $after15: String, $first15: Int, $sort15: [ProductTagsConnectionSort!], $where20: ProductTagsConnectionWhere, $after16: String, $first16: Int, $sort16: [ProductTagsConnectionSort!], $where21: ProductTagsConnectionWhere, $after17: String, $first17: Int, $sort17: [ProductTypeProductsConnectionSort!], $where22: ProductTypeProductsConnectionWhere, $options5: ProductTypeOptions, $where23: ProductTypeWhere, $after18: String, $first18: Int, $sort18: [ProductTypeConnectionSort!], $where24: ProductTypeConnectionWhere, $options6: ProductOptions, $where25: ProductWhere, $options7: ProductTypeOptions, $where26: ProductTypeWhere, $after19: String, $first19: Int, $sort19: [ProductTypeConnectionSort!], $where27: ProductTypeConnectionWhere, $options8: ProductOptions, $where28: ProductWhere, $options9: TagOptions, $where29: TagWhere, $options10: ProductOptions, $where30: ProductWhere, $options11: ProductStatusOptions, $where31: ProductStatusWhere, $options12: ProductOptions, $where32: ProductWhere, $options13: UserOptions, $where33: UserWhere, $options14: ProductOptions, $where34: ProductWhere, $options15: ImageOptions, $where35: ImageWhere, $after20: String, $first20: Int, $sort20: [ProductImagesConnectionSort!], $where36: ProductImagesConnectionWhere, $options16: UserOptions, $where37: UserWhere, $after21: String, $first21: Int, $sort21: [ProductPublishedByConnectionSort!], $where38: ProductPublishedByConnectionWhere, $options17: ProductStatusOptions, $where39: ProductStatusWhere, $after22: String, $first22: Int, $sort22: [ProductStatusConnectionSort!], $where40: ProductStatusConnectionWhere, $options18: TagOptions, $where41: TagWhere, $after23: String, $first23: Int, $sort23: [ProductTagsConnectionSort!], $where42: ProductTagsConnectionWhere, $options19: ProductTypeOptions, $where43: ProductTypeWhere, $after24: String, $first24: Int, $sort24: [ProductTypeConnectionSort!], $where44: ProductTypeConnectionWhere, $options20: ProductOptions, $where45: ProductWhere, $options21: ImageOptions, $where46: ImageWhere, $options22: ProductOptions, $where47: ProductWhere, $options23: ImageOptions, $where48: ImageWhere, $after25: String, $first25: Int, $sort25: [ProductFeaturedImageConnectionSort!], $where49: ProductFeaturedImageConnectionWhere, $options24: ImageOptions, $where50: ImageWhere, $after26: String, $first26: Int, $sort26: [ProductImagesConnectionSort!], $where51: ProductImagesConnectionWhere, $options25: UserOptions, $where52: UserWhere, $after27: String, $first27: Int, $sort27: [ProductPublishedByConnectionSort!], $where53: ProductPublishedByConnectionWhere, $options26: ProductStatusOptions, $where54: ProductStatusWhere, $after28: String, $first28: Int, $sort28: [ProductStatusConnectionSort!], $where55: ProductStatusConnectionWhere, $options27: TagOptions, $where56: TagWhere, $after29: String, $first29: Int, $sort29: [ProductTagsConnectionSort!], $where57: ProductTagsConnectionWhere, $options28: ProductTypeOptions, $where58: ProductTypeWhere, $after30: String, $first30: Int, $sort30: [ProductTypeConnectionSort!], $where59: ProductTypeConnectionWhere, $after31: String, $first31: Int, $sort31: [ImageFeaturesConnectionSort!], $where60: ImageFeaturesConnectionWhere, $options29: ImageOptions, $where61: ImageWhere, $options30: ProductOptions, $where62: ProductWhere, $options31: ImageOptions, $where63: ImageWhere, $options32: ProductOptions, $where64: ProductWhere, $after32: String, $first32: Int, $sort32: [ProductTypeProductsConnectionSort!], $where65: ProductTypeProductsConnectionWhere, $options33: ProductTypeOptions, $where66: ProductTypeWhere){
+    productTypes(options: $options33, where: $where66){
+        createdAt
+        deletedAt
+        description
+        id
+        name
+        products(options: $options32, where: $where64){
+            createdAt
+            deletedAt
+            description
+            featuredImage(options: $options31, where: $where63){
+                createdAt
+                deletedAt
+                description
+                features(options: $options30, where: $where62){
+                    createdAt
+                    deletedAt
+                    description
+                    featuredImage(options: $options29, where: $where61){
+                        createdAt
+                        deletedAt
+                        description
+                        featuresConnection(after: $after31, first: $first31, sort: $sort31, where: $where60){
+                            edges{
+                                cursor
+                                node{
+                                    createdAt
+                                    deletedAt
+                                    description
+                                    featuredImage(options: $options23, where: $where48){
+                                        createdAt
+                                        deletedAt
+                                        description
+                                        id
+                                        name
+                                        products(options: $options22, where: $where47){
+                                            createdAt
+                                            deletedAt
+                                            description
+                                            featuredImageConnection(after: $after, first: $first, sort: $sort, where: $where){
+                                                edges{
+                                                    cursor
+                                                }
+                                                pageInfo{
+                                                    endCursor
+                                                    hasNextPage
+                                                    hasPreviousPage
+                                                    startCursor
+                                                }
+                                                totalCount
+                                            }
+                                            id
+                                            images(options: $options21, where: $where46){
+                                                createdAt
+                                                deletedAt
+                                                description
+                                                features(options: $options20, where: $where45){
+                                                    createdAt
+                                                    deletedAt
+                                                    description
+                                                    featuredImageConnection(after: $after1, first: $first1, sort: $sort1, where: $where1){
+                                                        totalCount
+                                                    }
+                                                    id
+                                                    images(options: $options15, where: $where35){
+                                                        createdAt
+                                                        deletedAt
+                                                        description
+                                                        featuresConnection(after: $after2, first: $first2, sort: $sort2, where: $where2){
+                                                            pageInfo{
+                                                                endCursor
+                                                                hasNextPage
+                                                                hasPreviousPage
+                                                                startCursor
+                                                            }
+                                                            totalCount
+                                                        }
+                                                        id
+                                                        name
+                                                        products(options: $options14, where: $where34){
+                                                            createdAt
+                                                            deletedAt
+                                                            description
+                                                            id
+                                                            imagesConnection(after: $after3, first: $first3, sort: $sort3, where: $where3){
+                                                                edges{
+                                                                    cursor
+                                                                }
+                                                                pageInfo{
+                                                                    endCursor
+                                                                    hasNextPage
+                                                                    hasPreviousPage
+                                                                    startCursor
+                                                                }
+                                                                totalCount
+                                                            }
+                                                            inventory
+                                                            name
+                                                            publishedAt
+                                                            publishedBy(options: $options13, where: $where33){
+                                                                createdAt
+                                                                deletedAt
+                                                                id
+                                                                images(options: $options, where: $where5){
+                                                                    createdAt
+                                                                    deletedAt
+                                                                    description
+                                                                    id
+                                                                    name
+                                                                    productsConnection(after: $after4, first: $first4, sort: $sort4, where: $where4){
+                                                                        edges{
+                                                                            cursor
+                                                                        }
+                                                                        pageInfo{
+                                                                            endCursor
+                                                                            hasNextPage
+                                                                            hasPreviousPage
+                                                                            startCursor
+                                                                        }
+                                                                        totalCount
+                                                                    }
+                                                                    updatedAt
+                                                                }
+                                                                imagesConnection(after: $after5, first: $first5, sort: $sort5, where: $where6){
+                                                                    totalCount
+                                                                }
+                                                                name
+                                                                products(options: $options12, where: $where32){
+                                                                    createdAt
+                                                                    deletedAt
+                                                                    description
+                                                                    id
+                                                                    inventory
+                                                                    name
+                                                                    publishedAt
+                                                                    publishedByConnection(after: $after6, first: $first6, sort: $sort6, where: $where7){
+                                                                        edges{
+                                                                            cursor
+                                                                        }
+                                                                        pageInfo{
+                                                                            endCursor
+                                                                            hasNextPage
+                                                                            hasPreviousPage
+                                                                            startCursor
+                                                                        }
+                                                                        totalCount
+                                                                    }
+                                                                    status(options: $options11, where: $where31){
+                                                                        createdAt
+                                                                        deletedAt
+                                                                        description
+                                                                        id
+                                                                        name
+                                                                        products(options: $options10, where: $where30){
+                                                                            createdAt
+                                                                            deletedAt
+                                                                            description
+                                                                            id
+                                                                            inventory
+                                                                            name
+                                                                            publishedAt
+                                                                            statusConnection(after: $after7, first: $first7, sort: $sort7, where: $where8){
+                                                                                edges{
+                                                                                    cursor
+                                                                                }
+                                                                                pageInfo{
+                                                                                    endCursor
+                                                                                    hasNextPage
+                                                                                    hasPreviousPage
+                                                                                    startCursor
+                                                                                }
+                                                                                totalCount
+                                                                            }
+                                                                            tags(options: $options9, where: $where29){
+                                                                                createdAt
+                                                                                deletedAt
+                                                                                description
+                                                                                id
+                                                                                name
+                                                                                tags(options: $options8, where: $where28){
+                                                                                    createdAt
+                                                                                    deletedAt
+                                                                                    description
+                                                                                    featuredImage(options: $options1, where: $where10){
+                                                                                        createdAt
+                                                                                        deletedAt
+                                                                                        description
+                                                                                        id
+                                                                                        name
+                                                                                        productsConnection(after: $after8, first: $first8, sort: $sort8, where: $where9){
+                                                                                            totalCount
+                                                                                        }
+                                                                                        updatedAt
+                                                                                    }
+                                                                                    featuredImageConnection(after: $after9, first: $first9, sort: $sort9, where: $where11){
+                                                                                        totalCount
+                                                                                    }
+                                                                                    id
+                                                                                    images(options: $options2, where: $where12){
+                                                                                        createdAt
+                                                                                        deletedAt
+                                                                                        description
+                                                                                        id
+                                                                                        name
+                                                                                        updatedAt
+                                                                                    }
+                                                                                    imagesConnection(after: $after10, first: $first10, sort: $sort10, where: $where13){
+                                                                                        totalCount
+                                                                                    }
+                                                                                    inventory
+                                                                                    name
+                                                                                    publishedAt
+                                                                                    publishedBy(options: $options3, where: $where15){
+                                                                                        createdAt
+                                                                                        deletedAt
+                                                                                        id
+                                                                                        name
+                                                                                        productsConnection(after: $after11, first: $first11, sort: $sort11, where: $where14){
+                                                                                            totalCount
+                                                                                        }
+                                                                                        updatedAt
+                                                                                        username
+                                                                                    }
+                                                                                    publishedByConnection(after: $after12, first: $first12, sort: $sort12, where: $where16){
+                                                                                        totalCount
+                                                                                    }
+                                                                                    status(options: $options4, where: $where18){
+                                                                                        createdAt
+                                                                                        deletedAt
+                                                                                        description
+                                                                                        id
+                                                                                        name
+                                                                                        productsConnection(after: $after13, first: $first13, sort: $sort13, where: $where17){
+                                                                                            totalCount
+                                                                                        }
+                                                                                        updatedAt
+                                                                                    }
+                                                                                    statusConnection(after: $after14, first: $first14, sort: $sort14, where: $where19){
+                                                                                        totalCount
+                                                                                    }
+                                                                                    tagsConnection(after: $after15, first: $first15, sort: $sort15, where: $where20){
+                                                                                        edges{
+                                                                                            cursor
+                                                                                        }
+                                                                                        pageInfo{
+                                                                                            endCursor
+                                                                                            hasNextPage
+                                                                                            hasPreviousPage
+                                                                                            startCursor
+                                                                                        }
+                                                                                        totalCount
+                                                                                    }
+                                                                                    type(options: $options7, where: $where26){
+                                                                                        createdAt
+                                                                                        deletedAt
+                                                                                        description
+                                                                                        id
+                                                                                        name
+                                                                                        products(options: $options6, where: $where25){
+                                                                                            createdAt
+                                                                                            deletedAt
+                                                                                            description
+                                                                                            id
+                                                                                            inventory
+                                                                                            name
+                                                                                            publishedAt
+                                                                                            tagsConnection(after: $after16, first: $first16, sort: $sort16, where: $where21){
+                                                                                                totalCount
+                                                                                            }
+                                                                                            type(options: $options5, where: $where23){
+                                                                                                createdAt
+                                                                                                deletedAt
+                                                                                                description
+                                                                                                id
+                                                                                                name
+                                                                                                productsConnection(after: $after17, first: $first17, sort: $sort17, where: $where22){
+                                                                                                    totalCount
+                                                                                                }
+                                                                                                updatedAt
+                                                                                            }
+                                                                                            typeConnection(after: $after18, first: $first18, sort: $sort18, where: $where24){
+                                                                                                edges{
+                                                                                                    cursor
+                                                                                                }
+                                                                                                pageInfo{
+                                                                                                    endCursor
+                                                                                                    hasNextPage
+                                                                                                    hasPreviousPage
+                                                                                                    startCursor
+                                                                                                }
+                                                                                                totalCount
+                                                                                            }
+                                                                                            updatedAt
+                                                                                        }
+                                                                                        updatedAt
+                                                                                    }
+                                                                                    typeConnection(after: $after19, first: $first19, sort: $sort19, where: $where27){
+                                                                                        totalCount
+                                                                                    }
+                                                                                    updatedAt
+                                                                                }
+                                                                                updatedAt
+                                                                            }
+                                                                            updatedAt
+                                                                        }
+                                                                        updatedAt
+                                                                    }
+                                                                    updatedAt
+                                                                }
+                                                                updatedAt
+                                                                username
+                                                            }
+                                                            updatedAt
+                                                        }
+                                                        updatedAt
+                                                    }
+                                                    imagesConnection(after: $after20, first: $first20, sort: $sort20, where: $where36){
+                                                        totalCount
+                                                    }
+                                                    inventory
+                                                    name
+                                                    publishedAt
+                                                    publishedBy(options: $options16, where: $where37){
+                                                        createdAt
+                                                        deletedAt
+                                                        id
+                                                        name
+                                                        updatedAt
+                                                        username
+                                                    }
+                                                    publishedByConnection(after: $after21, first: $first21, sort: $sort21, where: $where38){
+                                                        totalCount
+                                                    }
+                                                    status(options: $options17, where: $where39){
+                                                        createdAt
+                                                        deletedAt
+                                                        description
+                                                        id
+                                                        name
+                                                        updatedAt
+                                                    }
+                                                    statusConnection(after: $after22, first: $first22, sort: $sort22, where: $where40){
+                                                        totalCount
+                                                    }
+                                                    tags(options: $options18, where: $where41){
+                                                        createdAt
+                                                        deletedAt
+                                                        description
+                                                        id
+                                                        name
+                                                        updatedAt
+                                                    }
+                                                    tagsConnection(after: $after23, first: $first23, sort: $sort23, where: $where42){
+                                                        totalCount
+                                                    }
+                                                    type(options: $options19, where: $where43){
+                                                        createdAt
+                                                        deletedAt
+                                                        description
+                                                        id
+                                                        name
+                                                        updatedAt
+                                                    }
+                                                    typeConnection(after: $after24, first: $first24, sort: $sort24, where: $where44){
+                                                        totalCount
+                                                    }
+                                                    updatedAt
+                                                }
+                                                id
+                                                name
+                                                updatedAt
+                                            }
+                                            inventory
+                                            name
+                                            publishedAt
+                                            updatedAt
+                                        }
+                                        updatedAt
+                                    }
+                                    featuredImageConnection(after: $after25, first: $first25, sort: $sort25, where: $where49){
+                                        totalCount
+                                    }
+                                    id
+                                    images(options: $options24, where: $where50){
+                                        createdAt
+                                        deletedAt
+                                        description
+                                        id
+                                        name
+                                        updatedAt
+                                    }
+                                    imagesConnection(after: $after26, first: $first26, sort: $sort26, where: $where51){
+                                        totalCount
+                                    }
+                                    inventory
+                                    name
+                                    publishedAt
+                                    publishedBy(options: $options25, where: $where52){
+                                        createdAt
+                                        deletedAt
+                                        id
+                                        name
+                                        updatedAt
+                                        username
+                                    }
+                                    publishedByConnection(after: $after27, first: $first27, sort: $sort27, where: $where53){
+                                        totalCount
+                                    }
+                                    status(options: $options26, where: $where54){
+                                        createdAt
+                                        deletedAt
+                                        description
+                                        id
+                                        name
+                                        updatedAt
+                                    }
+                                    statusConnection(after: $after28, first: $first28, sort: $sort28, where: $where55){
+                                        totalCount
+                                    }
+                                    tags(options: $options27, where: $where56){
+                                        createdAt
+                                        deletedAt
+                                        description
+                                        id
+                                        name
+                                        updatedAt
+                                    }
+                                    tagsConnection(after: $after29, first: $first29, sort: $sort29, where: $where57){
+                                        totalCount
+                                    }
+                                    type(options: $options28, where: $where58){
+                                        createdAt
+                                        deletedAt
+                                        description
+                                        id
+                                        name
+                                        updatedAt
+                                    }
+                                    typeConnection(after: $after30, first: $first30, sort: $sort30, where: $where59){
+                                        totalCount
+                                    }
+                                    updatedAt
+                                }
+                            }
+                            totalCount
+                        }
+                        id
+                        name
+                        updatedAt
+                    }
+                    id
+                    inventory
+                    name
+                    publishedAt
+                    updatedAt
+                }
+                id
+                name
+                updatedAt
+            }
+            id
+            inventory
+            name
+            publishedAt
+            updatedAt
+        }
+        productsConnection(after: $after32, first: $first32, sort: $sort32, where: $where65){
+            totalCount
+        }
+        updatedAt
+    }
+}

@@ -1,0 +1,3 @@
+query imagesCount($where: ImageWhere){
+    imagesCount(where: $where)
+}

@@ -1,0 +1,7 @@
+mutation deleteUsers($delete: UserDeleteInput, $where: UserWhere){
+    deleteUsers(delete: $delete, where: $where){
+        bookmark
+        nodesDeleted
+        relationshipsDeleted
+    }
+}

@@ -18,7 +18,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "start": "node lib/index",
+    "start": "ts-node src/index",
     "test": "ava"
   },
   "bugs": {
@@ -32,6 +32,19 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "ava": "^3.15.0"
+    "ava": "^3.15.0",
+    "ava-fast-check": "^4.0.2",
+    "fast-check": "^2.17.0"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.spec.ts"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }

@@ -1,0 +1,7 @@
+mutation deleteProductTypes($delete: ProductTypeDeleteInput, $where: ProductTypeWhere){
+    deleteProductTypes(delete: $delete, where: $where){
+        bookmark
+        nodesDeleted
+        relationshipsDeleted
+    }
+}

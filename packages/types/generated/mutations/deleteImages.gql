@@ -1,0 +1,7 @@
+mutation deleteImages($delete: ImageDeleteInput, $where: ImageWhere){
+    deleteImages(delete: $delete, where: $where){
+        bookmark
+        nodesDeleted
+        relationshipsDeleted
+    }
+}
